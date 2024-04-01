@@ -84,8 +84,9 @@
 	text-align: center;
 	width: 270px;
 	height: 300px;
-	top: 30%;
-	left: 41%;
+	/* top: 50%; */
+	left: 50%;
+	transform: translate(-50%, -50%);
 	border-radius: 12px;
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./pokemon.css";
 import { Detail, PokemonDetail } from "../interface";
 
@@ -27,8 +27,11 @@ const PokemonList: React.FC<Props> = ({
 }: Props) => {
 	const [isSelected, setIsSelected] = useState(false);
 
+	const [height, setHeight] = useState(window.pageYOffset);
+
 	useEffect(() => {
 		setIsSelected(id === viewDetail?.id);
+		setHeight(window.pageYOffset);
 	}, [viewDetail]);
 
 	const closeDetail = () => {
@@ -41,7 +44,9 @@ const PokemonList: React.FC<Props> = ({
 	return (
 		<div className="">
 			{isSelected ? (
-				<section className="pokemon-list-detailed">
+				<section
+					style={{ top: `calc(${height}px + 50%)` }}
+					className="pokemon-list-detailed">
 					<div className="detail-container">
 						<p className="detail-close" onClick={closeDetail}>
 							X
