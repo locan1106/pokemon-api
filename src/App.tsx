@@ -2,20 +2,22 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import PokemonCollection from "./components/PokemonCollection";
-import { PokemonInfo, PokemonUrl } from "./interface";
+import { Detail, PokemonInfo, PokemonUrl } from "./interface";
 
 const App: React.FC = () => {
 	const [pokemons, setPokemons] = useState<PokemonInfo[]>([]);
 	const [nextUrl, setNextUrl] = useState<string>("");
 	const [loading, setLoading] = useState<boolean>(false);
+	const [viewDetail, setViewDetail] = useState<Detail>({
+		id: 0,
+		isOpened: false,
+	});
 
 	useEffect(() => {
 		const getPokemon = async () => {
 			const res = await axios.get(
 				"https://pokeapi.co/api/v2/pokemon?limit=20?offset=20"
 			);
-
-			console.log(res.data);
 
 			setNextUrl(res.data.next);
 
@@ -48,7 +50,11 @@ const App: React.FC = () => {
 		<div className="App">
 			<div className="container">
 				<header className="pokemon-header">Pokemon</header>
-				<PokemonCollection pokemons={pokemons} />
+				<PokemonCollection
+					pokemons={pokemons}
+					viewDetail={viewDetail}
+					setViewDetail={setViewDetail}
+				/>
 			</div>
 			<div className="btn">
 				<button onClick={showMore}>

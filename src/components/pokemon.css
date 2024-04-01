@@ -18,8 +18,12 @@
 	flex-wrap: wrap;
 }
 .overlay {
-	width: 100vw;
+	position: fixed;
+	background-color: #3d405b;
+	top: 0;
+	bottom: 0;
 	height: 100vh;
+	width: 100vw;
 }
 .detail-container {
 	display: flex;
@@ -37,6 +41,7 @@
 	background-image: linear-gradient(0deg, #f2cc8f 0%, #f8f3d9 100%);
 	width: 100%;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
