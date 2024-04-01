@@ -1,19 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
-
-interface PokemonUrl {
-	name: string;
-	url: string;
-}
-
-interface PokemonInfo {
-	id: number;
-	name: string;
-	sprites: {
-		front_default: string;
-	};
-}
+import PokemonCollection from "./components/PokemonCollection";
+import { PokemonInfo, PokemonUrl } from "./interface";
 
 const App: React.FC = () => {
 	const [pokemons, setPokemons] = useState<PokemonInfo[]>([]);
@@ -29,6 +18,8 @@ const App: React.FC = () => {
 					`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
 				);
 
+				console.log(res.data);
+
 				setPokemons((p) => [...p, poke.data]);
 			});
 		};
@@ -40,6 +31,7 @@ const App: React.FC = () => {
 		<div className="App">
 			<div className="container">
 				<header className="pokemon-header">Pokemon</header>
+				<PokemonCollection pokemons={pokemons} />
 			</div>
 		</div>
 	);
